@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://lengyue233.github.io/vue-mini-mall",
+  "homepage": "https://jack2025-star.github.io/vue-mini-mall",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
