@@ -23,7 +23,7 @@
             <div class="item-info">
               <router-link :to="`/product/${item.id}`" class="item-name">{{ item.name }}</router-link>
               <span class="item-category">{{ item.category }}</span>
-              <span class="item-price">¥{{ item.price }}</span>
+              <span class="item-price">{{ formatPrice(item.price) }}</span>
             </div>
             <div class="item-actions">
               <div class="quantity-control" role="group" :aria-label="`${item.name} 数量控制`">
@@ -31,7 +31,7 @@
                 <span class="qty-value" aria-live="polite" aria-atomic="true">{{ item.quantity }}</span>
                 <button class="qty-btn" @click="cartStore.updateQuantity(item.id, item.quantity + 1)" :aria-label="`增加 ${item.name} 数量`">+</button>
               </div>
-              <span class="item-subtotal" :aria-label="`小计 ${(item.price * item.quantity).toFixed(2)} 元`">¥{{ (item.price * item.quantity).toFixed(2) }}</span>
+              <span class="item-subtotal" :aria-label="`小计 ${formatPrice(item.price * item.quantity)}`">{{ formatPrice(item.price * item.quantity) }}</span>
               <button class="remove-btn" @click="cartStore.removeItem(item.id)" :aria-label="`从购物车移除 ${item.name}`">✕</button>
             </div>
           </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="summary-row">
           <span>商品总价</span>
-          <span>¥{{ cartStore.totalPrice.toFixed(2) }}</span>
+          <span>{{ formatPrice(cartStore.totalPrice) }}</span>
         </div>
         <div class="summary-row">
           <span>运费</span>
@@ -55,7 +55,7 @@
         <div class="summary-divider"></div>
         <div class="summary-row total-row">
           <span>合计</span>
-          <span class="total-price">¥{{ cartStore.totalPrice.toFixed(2) }}</span>
+          <span class="total-price">{{ formatPrice(cartStore.totalPrice) }}</span>
         </div>
         <button class="checkout-btn" @click="handleCheckout">
           结算 ({{ cartStore.totalCount }})
@@ -68,11 +68,12 @@
 
 <script setup>
 import { useCartStore } from '../stores/cart'
+import { formatPrice } from '../utils/format'
 
 const cartStore = useCartStore()
 
 function handleCheckout() {
-  alert(`订单提交成功！共 ${cartStore.totalCount} 件商品，合计 ¥${cartStore.totalPrice.toFixed(2)}`)
+  alert(`订单提交成功！共 ${cartStore.totalCount} 件商品，合计 ${formatPrice(cartStore.totalPrice)}`)
   cartStore.clearCart()
 }
 </script>
@@ -86,6 +87,7 @@ function handleCheckout() {
   display: flex;
   align-items: center;
   gap: 12px;
+  text-wrap: balance;
 }
 
 .title-emoji {
@@ -273,6 +275,7 @@ function handleCheckout() {
   color: var(--orange);
   min-width: 80px;
   text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .remove-btn {
@@ -340,6 +343,7 @@ function handleCheckout() {
   font-size: 26px;
   font-weight: 800;
   color: var(--orange);
+  font-variant-numeric: tabular-nums;
 }
 
 .checkout-btn {

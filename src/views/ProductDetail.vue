@@ -17,7 +17,7 @@
 
       <div class="detail-info">
         <h1 class="detail-name">{{ product.name }}</h1>
-        <p class="detail-price" aria-label="价格">¥{{ product.price }}</p>
+        <p class="detail-price">{{ formatPrice(product.price) }}</p>
         <p class="detail-desc">{{ product.description }}</p>
 
         <div class="specs-section">
@@ -64,6 +64,7 @@ import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCartStore } from '../stores/cart'
 import { products } from '../data/products'
+import { formatPrice } from '../utils/format'
 
 const route = useRoute()
 const cartStore = useCartStore()
@@ -176,6 +177,7 @@ function handleAddToCart() {
   font-weight: 800;
   color: var(--orange);
   margin-bottom: 20px;
+  font-variant-numeric: tabular-nums;
 }
 
 .detail-desc {

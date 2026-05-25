@@ -22,7 +22,7 @@
         <span class="stat-label">购物车</span>
       </div>
       <div class="stat-card">
-        <span class="stat-number">¥{{ totalSpent }}</span>
+        <span class="stat-number">{{ formatPrice(totalSpent) }}</span>
         <span class="stat-label">累计消费</span>
       </div>
     </div>
@@ -48,7 +48,7 @@
             <span v-for="item in order.items" :key="item" class="order-item-tag">{{ item }}</span>
           </div>
           <div class="order-footer">
-            <span class="order-total">¥{{ order.total }}</span>
+            <span class="order-total">{{ formatPrice(order.total) }}</span>
           </div>
         </div>
       </div>
@@ -61,6 +61,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import { useCartStore } from '../stores/cart'
+import { formatPrice } from '../utils/format'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -300,6 +301,7 @@ function handleLogout() {
   font-size: 20px;
   font-weight: 700;
   color: var(--orange);
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 768px) {

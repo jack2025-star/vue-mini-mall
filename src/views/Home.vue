@@ -44,7 +44,7 @@
               </span>
             </div>
             <div class="product-bottom">
-              <span class="product-price">¥{{ product.price }}</span>
+              <span class="product-price">{{ formatPrice(product.price) }}</span>
               <span class="product-arrow" aria-hidden="true">→</span>
             </div>
           </div>
@@ -56,6 +56,7 @@
 
 <script setup>
 import { products } from '../data/products'
+import { formatPrice } from '../utils/format'
 </script>
 
 <style scoped>
@@ -77,6 +78,7 @@ import { products } from '../data/products'
   font-family: var(--font-display);
   color: white;
   margin-bottom: 12px;
+  text-wrap: balance;
 }
 
 .hero-line1 {
@@ -138,6 +140,7 @@ import { products } from '../data/products'
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 700;
+  text-wrap: balance;
 }
 
 .product-count {
@@ -159,7 +162,7 @@ import { products } from '../data/products'
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: cardIn 0.5s ease-out both;
   display: flex;
   flex-direction: column;
@@ -266,6 +269,7 @@ import { products } from '../data/products'
   font-size: 22px;
   font-weight: 700;
   color: var(--orange);
+  font-variant-numeric: tabular-nums;
 }
 
 .product-arrow {

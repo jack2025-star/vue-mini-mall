@@ -106,6 +106,8 @@ body {
   color: var(--dark);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {

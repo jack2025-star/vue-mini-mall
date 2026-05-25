@@ -50,7 +50,7 @@
 
         <button type="submit" class="login-btn" :disabled="loading" :aria-busy="loading">
           <span v-if="loading" class="spinner" aria-hidden="true"></span>
-          <span>{{ loading ? '登录中...' : '登 录' }}</span>
+          <span>{{ loading ? '登录中…' : '登 录' }}</span>
         </button>
       </form>
 
